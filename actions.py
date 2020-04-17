@@ -100,7 +100,7 @@ def sell_items():
 
         item = item.lower().capitalize()
 
-        if variables.stash[item] > quantity > 0 and item in variables.prices.keys():
+        if variables.stash[item] >= quantity > 0 and item in variables.prices.keys():
             if variables.advertisingBoost == 1.2:
                 print("\nAdvertising boosts your prices.")
             print("\nYou've sold " + str(quantity) + " " \
