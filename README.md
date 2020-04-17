@@ -1,2 +1,2 @@
 # fortune
-Simple text-based gae
+Simple text-based game
