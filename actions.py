@@ -1,18 +1,19 @@
 import variables
 import sys
-from random import seed
-from random import randint
-
+import random
 
 def buy_items():
+    # Wholesale prices are fixed for the duration of the game
+    # and are found in the variables.wholesale dict
     item = ""
     print("╔════════════════════════════════════════╗")
     print("║ ░░░░░░░░░░ WHOLESALE PRICES ░░░░░░░░░░ ║")
     for (k, v) in variables.wholesale.items():
         print("║\t\t" + k + ": $" + str(v) + "\t\t ║")
     print("╚════════════════════════════════════════╝\n")
+
     while item.upper() != "LEAVE":
-        item = input("What item would you like to buy? Type 'leave' to cancel: ")
+        item = input("What item would you like to buy? Type 'leave' to cancel: ").lower().capitalize()
         if item.upper() == "LEAVE":
             return ""
         quantity = input("How many would you like to buy? ")
@@ -28,11 +29,12 @@ def buy_items():
                     int(variables.stash["Gold"])) + " gold remaining.")
             else:
                 print("You don't have enough gold to make that purchase. Too bad you can't sell plasma.")
+        variables.show_stats()
 
 
 def rob():
-    seed()
-    success = bool(randint(0, 1))
+    random.seed()
+    success = bool(random.randint(0, 1))
 
     if success:
         variables.stash["Gold"] = variables.stash["Gold"] * 1.3
@@ -49,17 +51,71 @@ As you lay dying on the dusty floor, you have time to ponder such a tragic end."
 
 
 def advertise():
-    # TODO
-    return "NO CODE HERE YET"
 
+    if variables.stash["Gold"] >= 10:
+        print("Advertising costs 10 pieces of gold, lasts for 14 days and allows you to sell your goods at a premium.")
+    else:
+        return("Advertising costs 10 pieces of gold. You don't have enough gold yet.")
+
+    if input("Buy advertising [y/n]? ").lower() == "y":
+        variables.advertisingDuration = 14
+        return("There's no such thing as bad publicity. Advertising is in place for 14 days.")
+    elif input("Buy advertising [y/n]? ").lower() == "n":
+        return("You've decided not to advertise.")
+    else:
+        print("Please enter a 'y' or 'n'.")
+        advertise()
 
 def scavenge():
-    # TODO
-    return "NO CODE HERE YET"
+    random.seed()
+    success = bool(random.randint(0, 1))
+
+    if success:
+        for (k, v) in variables.stash.items():
+            success = bool(random.randint(0, 1))
+            if success:
+                variables.stash[k] = variables.stash[k] * random.uniform(1.2, 1.6)
+                print("Scavenging yields some " + k + ".")
+    else:
+        if variables.stash["Food"] > 0:
+            variables.stash["Food"] -= 1
+            variables.stash["Bullets"] -=3
+            return """You return empty-handed, having used some of your precious bullets and food."""
+        else:
+            sys.exit("""You ventured out to scavenge without bringing enough food. Starvation is a slow death.""")
 
 
 def sell_items():
-    # TODO
+    item = ""
+
+    while item.upper() != "LEAVE":
+        item = input("What item would you like to sell? Type 'leave' to cancel: ").lower().capitalize()
+        if item.upper() == "LEAVE":
+            return ""
+        quantity = input("How many would you like to sell? ")
+        try:
+            quantity = int(quantity)
+        except ValueError:
+            print("Please enter a number.")
+
+        item = item.lower().capitalize()
+
+        if variables.stash[item] > quantity > 0 and item in variables.prices.keys():
+            if variables.advertisingBoost == 1.2:
+                print("\nAdvertising boosts your prices.")
+            print("\nYou've sold " + str(quantity) + " " \
+                  + item + " for $" + str(int(variables.prices[item] * quantity * variables.advertisingBoost)))
+            variables.stash["Gold"] += variables.prices[item] * quantity * variables.advertisingBoost
+            variables.stash[item] -= quantity
+        elif variables.stash[item] < quantity < 0:
+            print("You don't have enough " + item + " to make this sale.")
+        elif item not in variables.prices.keys():
+            print("This item doesn't exist.")
+        else:
+            print(item + " " + str(quantity))
+
+        variables.show_stats()
+
     return
 
 
@@ -75,4 +131,6 @@ def action_menu(user_choice):
     elif user_choice == 5:
         return sell_items()
     elif user_choice == 6:
-        return
+        return ""
+    elif user_choice == 7:
+        sys.exit("You've closed up shop and sought an early retirement. Good bye!")

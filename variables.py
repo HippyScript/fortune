@@ -72,15 +72,31 @@ def noevent():
 
 def random_event():
     seed()
-    ev = randint(1, 25)
+    ev = randint(1, 13)
     func = events.get(ev, lambda: "")
-    if func != "":
+    if func != None:
         return func()
     else:
         return "A quiet night passes."
 
 
-indenturedCount = 0
+def show_stats():
+    print("╔═══════════════════════════════════════════════════════╗")
+    print("║ ░░░░░░░░░░░░░░░░░░░░░░░ STATS ░░░░░░░░░░░░░░░░░░░░░░░ ║")
+    print("║\tStores\t\t\tPrices".ljust(10) + "\t\t\t║")
+
+    for (k, v), (k2, v2) in zip(stash.items(), prices.items()):
+        print("║\t" + k + ": " + str(int(v)).ljust(5) + "\t|\t" + "$" + str(v2) + "\t\t\t║")
+    print("║-------------------------------------------------------║")
+    print("║ Indentured servants: " + str(indenturedCount) + "  " \
+          + "Days of advertising left: " + str(advertisingDuration).ljust(4) + "║")
+
+    print("╚═══════════════════════════════════════════════════════╝\n")
+
+
+indenturedCount: int = 0  # number of indentured servants
+advertisingDuration: int = 0  # number of days left on current advertising
+advertisingBoost: int = 1  # when advertising days are > 0, this is set to 1.2 to boost prices
 
 stash = {
     "Gold": 20,
