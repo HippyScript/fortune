@@ -4,6 +4,7 @@
 import time
 import variables
 import actions
+import sys
 
 
 def update_display(event_str):
@@ -18,10 +19,20 @@ if __name__ == "__main__":
 
     days = 0  # number of days
     choice = 0  # user's menu choice
+    print("******* FORTUNE *******\n")
+    print("""You've set up a shop in your village to supply the villagers with everything they need.
+buy supplies at wholesale cost, sell them at a profit, scavange for more stuff or try your hand
+at robbery or marketing to amass your fortune. You require 1 food per day to survive.\n""")
 
     while True:
         time.sleep(1.0)
         days += 1
+
+        if variables.stash["Food"] == 0:
+            sys.exit("Your food has run out. Starvation is a slow and painful death.")
+
+        variables.stash["Food"] -=
+
 
         # Every 4 days player and all indentured servants accumulate gold
         if days % 4 == 0:
