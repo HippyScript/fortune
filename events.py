@@ -8,7 +8,7 @@ from random import randint
 def competitor():
     for (k, v) in variables.prices.items():
         if k != "Gold" and v > 1:
-            variables.prices[k] = int(v * .9)
+            variables.prices[k] = int(v * .8)
 
     return "A competitor has set up shop! Prices have taken a hit."
 
@@ -31,10 +31,10 @@ def robbed():
 
 def find():
     stash_str = ""
-    for (k, v) in variables.stash.items():
+    for (item, quantity) in variables.stash.items():
         if bool(randint(0, 1)):
-            variables.stash[k] = int(v * 1.2)
-            stash_str += k + " "
+            variables.stash[item] = int(quantity * 1.2)
+            stash_str += item + " "
 
     return "You've found a stash of supplies! In this stash: " + stash_str
 

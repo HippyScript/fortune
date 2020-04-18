@@ -30,6 +30,7 @@ wholesale = {
     "Food": 1
 }
 events_list = {
+    0: events.noevent(),
     1: events.competitor(),
     2: events.noevent(),
     3: events.robbed(),
