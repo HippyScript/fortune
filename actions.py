@@ -7,9 +7,9 @@ def buy_items():
 
     item = ""
 
-    while item.upper() != "LEAVE":
+    while item != "Leave":
         item = input("What item would you like to buy? Type 'leave' to cancel: ").capitalize()
-        if item.upper() == "LEAVE":
+        if item == "Leave":
             return ""
         quantity = input("How many would you like to buy? ")
         try:
