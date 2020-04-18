@@ -1,5 +1,6 @@
 import variables
 
+
 # Explanation of the game
 def welcome_message():
     print("******* FORTUNE *******\n")
@@ -7,36 +8,39 @@ def welcome_message():
     buy supplies at wholesale cost, sell them at a profit, scavenge for more stuff or try your hand
     at robbery or marketing to amass your fortune. You require 1 food per day to survive.\n""")
 
+
 # Daily inventory and retail prices
 def show_stats():
     print("╔═══════════════════════════════════════════════════════╗")
     print("║ ░░░░░░░░░░░░░░░░░░░░░░░ STATS ░░░░░░░░░░░░░░░░░░░░░░░ ║")
-    print("║{:>12}{:>25}{:>19}".format("Items", "Prices", "║"))
+    print("║{:>14}{:>25}{:>17}".format("Items", "Prices", "║"))
 
     for (k, v), (k2, v2) in zip(variables.stash.items(), variables.prices.items()):
-        print("║{:>12}: {:>6}{:>6}{:>6}{}{:>23}".format(k, int(v), "|", "$", int(v2), "║"))
+        print("║{:>12}: {:^12}|{:>8}{:^2}{:^38}".format(k, int(v), "$", int(v2), "║"))
     print("║-------------------------------------------------------║")
     print("║ Indentured servants: " + str(variables.identured_count) + "  " \
           + "Days of advertising left: " + str(variables.advertising_duration).ljust(4) + "║")
 
     print("╚═══════════════════════════════════════════════════════╝\n")
 
+
 # Display player's stash, current retail prices for all goods,
 # and any events that have happened overnight
 def update_display(event_str):
-
     show_stats()
     print(event_str)
+
 
 # Wholesale prices are fixed for the game and located in
 # variables.wholesale
 
 def show_wholesale_prices():
-    print("╔════════════════════════════════════════╗")
-    print("║ ░░░░░░░░░░ WHOLESALE PRICES ░░░░░░░░░░ ║")
+    print("╔════════════════════════════════╗")
+    print("║ ░░░░░░ WHOLESALE PRICES ░░░░░░ ║")
     for (k, v) in variables.wholesale.items():
-        print("║\t\t" + k + ": $" + str(v) + "\t\t ║")
-    print("╚════════════════════════════════════════╝\n")
+        print("║{:>14}{:^10}{:^17}".format(k, ":  $" + str(v), "║"))
+    print("╚════════════════════════════════╝\n")
+
 
 # Display actions menu and get input
 def get_action():

@@ -6,7 +6,7 @@ import random
 def buy_items():
 
     item = ""
-
+    ui.show_wholesale_prices()
     while item != "Leave":
         item = input("What item would you like to buy? Type 'leave' to cancel: ").capitalize()
         if item == "Leave":
