@@ -35,6 +35,8 @@ def rob():
     success = bool(random.randint(0, 1))
 
     if success:
+        if variables.stash["Gold"] == 0:
+            variables.stash["Gold"] == 1
         variables.stash["Gold"] = variables.stash["Gold"] * 1.3
         return "Success! You've robbed your competitor and gained gold!"
     else:
@@ -67,6 +69,8 @@ def advertise():
 # Scavenging uses 1 food and 3 bullets
 # If the user runs out of food, they die of starvation
 def scavenge():
+    if variables.stash["Bullets"] < 3:
+        return "You cannot scavenge without at least 3 bullets."
     random.seed()
     success = bool(random.randint(0, 1))
 
@@ -74,6 +78,8 @@ def scavenge():
         for (k, v) in variables.stash.items():
             success = bool(random.randint(0, 1))
             if success:
+                if variables.stash[k] == 0:     # Make sure user gains at least 1
+                    variables.stash[k] = 1      # item from successful scavenge
                 variables.stash[k] = variables.stash[k] * random.uniform(1.2, 1.6)
                 print("Scavenging yields some " + k + ".")
     else:
