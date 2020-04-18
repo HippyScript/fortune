@@ -40,7 +40,7 @@ def find():
 
 
 def indentured():
-    variables.identured_count += 1
+    variables.indentured_count += 1
     return "You have an indentured servant! The servant will earn you extra money for 30 days."
 
 
