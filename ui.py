@@ -4,10 +4,7 @@ import variables
 # Explanation of the game
 def welcome_message():
     print("******* FORTUNE *******\n")
-    print("You've set up a shop in your village to supply the villagers with everything they need.\
-    buy supplies at wholesale cost, sell them at a profit, scavenge for more stuff or try your hand\
-    at robbery or marketing to amass your fortune. You require 1 food per day to survive.\n")
-
+    print("You've set up a shop in your village to supply the villagers with everything they need. Buy supplies at wholesale cost, sell them at a profit, scavenge for more stuff or try your hand at robbery or marketing to amass your fortune. You require 1 food per day to survive.\n")
 
 # Daily inventory and retail prices
 def show_stats():
