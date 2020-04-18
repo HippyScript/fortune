@@ -49,5 +49,9 @@ if __name__ == "__main__":
         if days > 1:
             ui.update_display(events.random_event())
 
+        # You win if you collect 1000 gold
+        if variables.stash["Gold"] >= 1000:
+            ui.victory(days)
+
         print(actions.action_menu(ui.get_action()))
 

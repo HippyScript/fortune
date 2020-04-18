@@ -33,7 +33,6 @@ def update_display(event_str):
 
 # Wholesale prices are fixed for the game and located in
 # variables.wholesale
-
 def show_wholesale_prices():
     print("╔════════════════════════════════╗")
     print("║ ░░░░░░ WHOLESALE PRICES ░░░░░░ ║")
@@ -59,3 +58,21 @@ def get_action():
         get_action()
 
     return choice
+
+
+# Print victory message and stats
+def victory(days):
+    net_worth: int = 0
+    for item in variables.stash:
+            net_worth += variables.stash[item] * variables.prices[item]
+
+    print("░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░")
+    print("▓░▓░▓░▓░▓░▓░▓ VICTORY!! ▓░▓░▓░▓░▓░▓░▓░▓")
+    print("░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░")
+    print("You've earned enough to retire.")
+    print("It took you {} days to amass your fortune.".format(days))
+    print("Your net worth is now ${}".format(net_worth))
+
+
+
+    print("")
