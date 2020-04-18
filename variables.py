@@ -2,7 +2,7 @@
 
 import events
 
-identured_count: int = 0  # number of indentured servants
+indentured_count: int = 0  # number of indentured servants
 advertising_duration: int = 0  # number of days left on current advertising
 advertising_boost: int = 1  # when advertising days are > 0, this is set to 1.2 to boost prices
 
