@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
         # Every 4 days player and all indentured servants accumulate gold
         if days % 4 == 0:
-            variables.stash["Gold"] = variables.stash["Gold"] + 1 + variables.identured_count
+            variables.stash["Gold"] = variables.stash["Gold"] + 1 + variables.indentured_count
 
         # Advertising is good for 14 days and adds 20% to sale prices
         # Subtract 1 from the counter every day it's above 0
@@ -41,8 +41,8 @@ if __name__ == "__main__":
             variables.advertising_boost = 1
 
         # Every 30 days one indentured servant retires
-        if days % 30 == 0 and variables.identured_count > 0:
-            variables.identured_count -= 1
+        if days % 30 == 0 and variables.indentured_count > 0:
+            variables.indentured_count -= 1
             print("An indentured servant has paid off his debt and retired.")
 
         # Every subsequent day has a random event

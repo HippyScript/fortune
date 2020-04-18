@@ -18,7 +18,7 @@ def show_stats():
     for (k, v), (k2, v2) in zip(variables.stash.items(), variables.prices.items()):
         print("║{:>12}: {:^12}|{:>8}{:^2}{:^38}".format(k, int(v), "$", int(v2), "║"))
     print("║-------------------------------------------------------║")
-    print("║ Indentured servants: " + str(variables.identured_count) + "  " \
+    print("║ Indentured servants: " + str(variables.indentured_count) + "  " \
           + "Days of advertising left: " + str(variables.advertising_duration).ljust(4) + "║")
 
     print("╚═══════════════════════════════════════════════════════╝\n")
