@@ -23,7 +23,7 @@ if __name__ == "__main__":
         time.sleep(1.0)
         days += 1
 
-        if variables.stash["Food"] == 0:
+        if variables.stash["Food"] >= 0:
             sys.exit("Your food has run out. Starvation is a slow and painful death.")
 
         variables.stash["Food"] -= 1
